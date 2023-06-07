@@ -140,7 +140,7 @@ def extract_products(url, path, collections=None):
         writer = csv.writer(f)
         writer.writerow(['Code', 'Collection', 'Category',
                          'Name', 'Variant Name',
-                         'Price', 'In Stock', 'URL', 'Image URL'])
+                         'price', 'In Stock', 'URL', 'Image URL'])
         seen_variants = set()
         for col in get_page_collections(url):
             if collections and col['handle'] not in collections:
