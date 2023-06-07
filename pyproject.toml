@@ -1,0 +1,28 @@
+[tool.poetry]
+name = "watch-price-prediction"
+version = "0.1.0"
+description = ""
+authors = ["jocowhite <wi20103@lehre.dhbw-stuttgart.de>"]
+readme = "README.md"
+packages = [{include = "watch_price_prediction"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+torch = "^2.0.1"
+notebook = "^6.5.4"
+jupyterlab = "^4.0.1"
+matplotlib = "^3.7.1"
+pandas = "^2.0.2"
+torchvision = "^0.15.2"
+ipykernel = "^6.23.1"
+sklearn = "^0.0.post5"
+requests = "^2.31.0"
+fastai = "^2.7.12"
+pretrainedmodels = "^0.7.4"
+utils = "^1.0.1"
+dill = "^0.3.6"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
