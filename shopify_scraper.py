@@ -27,15 +27,14 @@ def get_page(url, page, collection_handle=None):
     while True:
         try:
             data = urllib.request.urlopen(req).read()
-            break
+            products = json.loads(data.decode())['products']
+            return products
         except HTTPError:
             break
             print('Blocked! Sleeping...')
             time.sleep(180)
             print('Retrying')
         
-    products = json.loads(data.decode())['products']
-    return products
 
 
 def get_page_collections(url):
@@ -54,7 +53,6 @@ def get_page_collections(url):
                 data = urllib.request.urlopen(req).read()
                 break
             except HTTPError:
-                break
                 print('Blocked! Sleeping...')
                 time.sleep(180)
                 print('Retrying')
