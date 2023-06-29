@@ -78,9 +78,9 @@ A summary of the $r^2$ for the different Models and Datasets are listed in the f
 | **Dataset**    | **Models** | **Model 1 -**  | **Random Forrest** | **Model 2 -**  | **ANN**        | **Model 3 -**  | **resnet34**   |
 |----------------|------------|----------------|--------------------|----------------|----------------|----------------|----------------|
 |                |            | trained on ds1 | trained on ds2     | trained on ds1 | trained on ds2 | trained on ds1 | trained on ds3 |
-| **ds1 kaggle** | test       | 0.32           | X                  | i              | X              | 0.23           | X              |
-| **ds1 kaggle** | train      | 0.74           | X                  | i              | X              | 0.46           | X              |
-| **ds2 marc**   | test       | -0.3           | i                  | i              | i              | -0.31          | -6.4           |
+| **ds1 kaggle** | test       | 0.32           | X                  | -0.17          | X              | 0.76           | X              |
+| **ds1 kaggle** | train      | 0.74           | X                  | -0.2           | X              | 0.90           | X              |
+| **ds2 marc**   | test       | -0.3           | i                  | -0.32          | i              | -0.31          | -6.4           |
 | **ds3 crown**  | test       | X              | i                  | X              | i              | X              | 0.52           |
 | **ds3 corwn**  | train      | X              | i                  | X              | i              | X              | 0.65           |
 
