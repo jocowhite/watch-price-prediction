@@ -34,6 +34,9 @@ With the help of the [GITHub Shopify Scraper](https://github.com/lagenar/shopify
 ## DS_3 Scraped OnlineShop [Crown & Caliber](https://www.crownandcaliber.com/)
 Also with the help of the customised [GITHub Shopify Scraper](https://github.com/lagenar/shopify-scraper), 26,216 watch images and their prices could be scraped in this online shop. 
 
+
+In this project, a different dataset is used as validation dataset each time, i.e. for training and testing with ds3, ds2 becomes the validation dataset.
+
 # Models
 
 Three different models are used to achieve the set goal. 
@@ -54,6 +57,18 @@ path_wiki = 'data/watches/ds1_kaggle/example_cleandata.csv'
 path_imdb = 'data/watches/ds1_kaggle/example_images/'
 ```
 You can also select different Datasets by changing the ds.... Part of the Path to the right folder name.
+
+### **Packages**
+For the following project a [poetry](https://python-poetry.org/) environment was used and the [pyproject.toml](pyproject.toml) file helps to recreate the environment. So you have the Option to install poetry with: 
+```bash
+brew install poetry
+```
+and with this command you can start the environment:
+```bash
+poetry install
+```
+Otherwise you can Install the required dependency's manually that you can see in the [pyproject.toml](pyproject.toml) 
+
 
 ### **Get trained Models**
 **The Models that are already trained and all the Data can also be downloaded by GIT-LFS through the GitLab Repository that you can find here: [Repo](https://git.dhbw-stuttgart.de/wi20103/ml-project)**
