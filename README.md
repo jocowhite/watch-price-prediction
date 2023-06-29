@@ -17,7 +17,7 @@ When considering the moral impact the project may have on society, no explicit p
 This project also shows that there is no direct obvious aspect that determines the price of a watch. This means, for example, how gold-plated the watch is, among other things. 
 Rather, it is certain models and brands that account for a certain price. 
 For society, the project does not bring much added value. For watch lovers, however, it can be interesting and perhaps artificial intelligence can help jewellers determine the price of a watch in the future. 
-
+This project started with the idea of detecting counterfeits, an ability that could actually protect jewellers from high financial losses. The problem that existed for this project, however, is the lack of a basis of watch pictures of fakes, as even fake watch online shops usually use the original pictures of the watches. 
 
 # Data
 To solve the problem, three data sets were compiled and downloaded.
@@ -34,11 +34,29 @@ With the help of the [GITHub Shopify Scraper](https://github.com/lagenar/shopify
 ## DS_3 Scraped OnlineShop [Crown & Caliber](https://www.crownandcaliber.com/)
 Also with the help of the customised [GITHub Shopify Scraper](https://github.com/lagenar/shopify-scraper), 26,216 watch images and their prices could be scraped in this online shop. 
 
+# Models
 
-### Get all Data without Scaping
+Three different models are used to achieve the set goal. 
+1. Random Forrest Model [M1_RandomForest.ipynb](M1_RandomForest.ipynb)
+2. Simple Artificial neural network [M2_simpleNN.ipynb](M2_simpleNN.ipynb)
+3. Adoped pretrained resnet34 [M3_resnet.ipynb](M3_resnet.ipynb)
 
+### **Reproducibility**
+To check the requirement that the Notebook is rerunable a example_images folder was created and uploaded to the GIT and also handed in. 
+Every example_images contains the first 20 Images of each dataset. 
+To check the reproducibility you can change the Variable Paths in the beginning of the Notebook:
+```python
+# from
+path_wiki = 'data/watches/ds1_kaggle/cleandata.csv'
+path_imdb = 'data/watches/ds1_kaggle/images/'
+# to
+path_wiki = 'data/watches/ds1_kaggle/example_cleandata.csv'
+path_imdb = 'data/watches/ds1_kaggle/example_images/'
+```
+You can also select different Datasets by changing the ds.... Part of the Path to the right folder name.
+
+### **Get trained Models**
 **The Models that are already trained and all the Data can also be downloaded by GIT-LFS through the GitLab Repository that you can find here: [Repo](https://git.dhbw-stuttgart.de/wi20103/ml-project)**
-This way is recomended to reproduce the same results as in this Project. Otherwise, the models are trained with different pictures, as the wristwatches in the online shops change every day.
 
 Install git-lfs on a Mac with brew:
 ```bash
@@ -52,18 +70,6 @@ git lfs fetch --all
 git lfs pull 
 ```
 After that you should have all files you need to run all Jupyter Notebooks.
-
-# Models
-
-Three different models are used to achieve the set goal. 
-1. Random Forrest Model [M1_RandomForest.ipynb](M1_RandomForest.ipynb)
-2. Simple Artificial neural network [M2_simpleNN.ipynb](M2_simpleNN.ipynb)
-3. Adoped pretrained resnet34 [M3_resnet.ipynb](M3_resnet.ipynb)
-
-
-In order to fulfil the framework condition given in the lecture that the notebooks should be executed as quickly as possible, each model is always trained with data set 1 in order to demonstrate the functionality of the model. 
-After that the model was also trained with 80% of the DS_3 Crown & Caliber Dataset. 
-The files are marked with a "_ds3" and are not recomeded to reproduce because the training times are very long.
 
 
 # Metrics
@@ -85,7 +91,19 @@ A summary of the $r^2$ for the different Models and Datasets are listed in the f
 | **ds3 corwn**  | train      | X              | i                  | X              | i              | X              | 0.65           |
 
 
-Even though the Random Forrest Model shows the best R value on the training data, it is not the best model, which is clear when looking at the R value on the test data. It can be seen that the model overfits.
+### Evaluation
+1. **Random Forest:**
+Random Forrest adapts very well to the training data. However, it unfortunately tends to overfitting. This may be due to the fact that with the random forest only each pixel is compared with the pixel that is exactly at this position on another image. To counteract this problem, a Sobel filter was applied for the detection of edges, which improved the results of the model. 
+
+2. **Artificial Neural Network:** 
+The ANN achieves the worst results. Different sizes were tried out. At the beginning with three layers, the model only permanently predicted a value that was not even the mean value. With enough training iterations, one would probably have reached the mean value at some point. The assumption is that a neural network is simply too small to recognise the complex relationships between the different clocks. Towards the end of the project, minimal positive R values were achieved. However, these are not indicative of a reliable model, as they are far too low and inconsistent. 
+
+3. **Resnet34**
+The pre-trained Resnet34 achieves the best results, and it can indeed be observed that the model learns to distinguish between different watches and brands. What is particularly exciting, however, is that the model estimates three watches with values of well over 300k euros using new data from another online shop, in this case Marc Gebauer, which also has a very strong negative influence on the $r^2$ value. If you filter these outliers, you get an R value that is close to 0 for the prediction on a different data set such as that of the training. 
+
+### Overall learnings on this task
+Basically, it can be stated that the regression of watch prices based on pictures is a complex topic. There is no clear aspect, such as how golden the watch is, that indicates how expensive these watches are. While reasonably good results were obtained on a constant data set, none of the trained models could reproduce the r value on a different data set. 
+However, it should be noted that a mean value estimator on another model does not reach an R value of 0 on another data set, which is why this comparison should not be made when considering new data sets with which the model has not been trained.
 
 In addition to using the $r^2$ metric, plots were also used to prove the deviation of the prediction from the actual price.
 This is a example of this plot that is a result of the resnet34:
