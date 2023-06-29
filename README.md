@@ -101,10 +101,11 @@ A summary of the $r^2$ for the different Models and Datasets are listed in the f
 |                |            | trained on ds1 | trained on ds2     | trained on ds1 | trained on ds2 | trained on ds1 | trained on ds3 |
 | **ds1 kaggle** | test       | 0.32           | X                  | -0.17          | X              | 0.76           | X              |
 | **ds1 kaggle** | train      | 0.74           | X                  | -0.2           | X              | 0.90           | X              |
-| **ds2 marc**   | test       | -0.3           | i                  | -0.32          | i              | -0.31          | -6.4           |
+| **ds2 marc**   | test       | -0.3           | i                  | -0.32          | i              | -0.31          | -6.4 (-0.07)*  |
 | **ds3 crown**  | test       | X              | i                  | X              | i              | X              | 0.52           |
 | **ds3 corwn**  | train      | X              | i                  | X              | i              | X              | 0.65           |
 
+*filtered 7 huge outliers
 
 ### Evaluation
 1. **Random Forest:**
