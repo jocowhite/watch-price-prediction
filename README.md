@@ -92,24 +92,23 @@ After that you should have all files you need to run all Jupyter Notebooks.
 
 
 # Metrics
-In order to compare the models with each other, the metric of the $r^2$ was used also named [Coefficient of determination](https://en.wikipedia.org/wiki/Coefficient_of_determination). 
+In order to compare the models with each other, the metric of the $R^2$ was used also named [Coefficient of determination](https://en.wikipedia.org/wiki/Coefficient_of_determination). 
 If we get a value less than zero, the model is worse than a mean value estimator, which simply predicts the mean value of all watches. 
 As soon as we have values above 0, our model is better than a mean value estimator. To get really good results, this metric should at best be between 0.8 and 1, whereas a 1 would be very questionable, as it could represent an overfitting or a general error. 
-In this project, however, the best results are an $r^2$ value of 0.73 on the test data with a Resnet32 that has been pre-trained on this question. Unfortunately, no significantly better models such as a mean estimator can be trained with the other models. 
+In this project, however, the best results are an $R^2$ value of 0.73 on the test data with a Resnet32 that has been pre-trained on this question. Unfortunately, no significantly better models such as a mean estimator can be trained with the other models. 
 
 ## Results
 
-A summary of the $r^2$ for the different Models and Datasets are listed in the following table: 
+A summary of the $R^2$ for the different Models and Datasets are listed in the following table: 
 | **Dataset**    | **Models** | **Model 1 -**  | **Random Forrest** | **Model 2 -**  | **ANN**        | **Model 3 -**  | **resnet34**   |
 |----------------|------------|----------------|--------------------|----------------|----------------|----------------|----------------|
 |                |            | trained on ds1 | trained on ds2     | trained on ds1 | trained on ds2 | trained on ds1 | trained on ds3 |
 | **ds1 kaggle** | test       | 0.32           | X                  | -0.17          | X              | 0.76           | X              |
 | **ds1 kaggle** | train      | 0.74           | X                  | -0.2           | X              | 0.90           | X              |
-| **ds2 marc**   | test       | -0.3           | i                  | -0.32          | -0.19          | -0.31          | -6.4 (-0.07)*  |
+| **ds2 marc**   | test       | -0.3           | i                  | -0.32          | -0.19          | -0.31          | -0.051         |
 | **ds3 crown**  | test       | X              | i                  | X              | 0.12           | X              | 0.52           |
 | **ds3 corwn**  | train      | X              | i                  | X              | 0.15           | X              | 0.65           |
 
-*filtered 7 huge outliers
 
 ### Evaluation
 1. **Random Forest:**
@@ -119,16 +118,16 @@ Random Forrest adapts very well to the training data. However, it unfortunately 
 The ANN achieves the worst results. Different sizes were tried out. At the beginning with three layers, the model only permanently predicted a value that was not even the mean value. With enough training iterations, one would probably have reached the mean value at some point. The assumption is that a neural network is simply too small to recognise the complex relationships between the different clocks. Towards the end of the project, minimal positive R values were achieved. However, these are not indicative of a reliable model, as they are far too low and inconsistent. 
 
 3. **Resnet34**
-The pre-trained Resnet34 achieves the best results, and it can indeed be observed that the model learns to distinguish between different watches and brands. What is particularly exciting, however, is that the model estimates three watches with values of well over 300k euros using new data from another online shop, in this case Marc Gebauer, which also has a very strong negative influence on the $r^2$ value. If you filter these outliers, you get an R value that is close to 0 for the prediction on a different data set such as that of the training. 
+The pre-trained Resnet34 achieves the best results, and it can indeed be observed that the model learns to distinguish between different watches and brands. What is particularly exciting, however, is that the model estimates three watches with values of well over 300k euros using new data from another online shop, in this case Marc Gebauer, which also has a very strong negative influence on the $R^2$ value. If you filter these outliers, you get an R value that is close to 0 for the prediction on a different data set such as that of the training. 
 
 To test more precisely what the resnet actually recognizes, in a second test manipulated images were fed into the model to see how the model works and to explain its behavior. 
 The tests are in the following file: [test2_M3_ds3.ipynb](test2_M3_ds3.ipynb)
 
 ### Overall learnings on this task
-Basically, it can be stated that the regression of watch prices based on pictures is a complex topic. There is no clear aspect, such as how golden the watch is, that indicates how expensive these watches are. While reasonably good results were obtained on a constant data set, none of the trained models could reproduce the r value on a different data set. 
-However, it should be noted that a mean value estimator on another model does not reach an R value of 0 on another data set, which is why this comparison should not be made when considering new data sets with which the model has not been trained.
+Basically, it can be stated that the regression of watch prices based on pictures is a complex topic. There is no clear aspect, such as how golden the watch is, that indicates how expensive these watches are. While reasonably good results were obtained on a constant data set, none of the trained models could reproduce the $R^2$ value on a different data set. 
+However, it should be noted that a mean value estimator on another model does not reach an $R^2$ value of 0 on another data set, which is why this comparison should not be made when considering new data sets with which the model has not been trained.
 
-In addition to using the $r^2$ metric, plots were also used to prove the deviation of the prediction from the actual price.
+In addition to using the $R^2$ metric, plots were also used to prove the deviation of the prediction from the actual price.
 This is a example of this plot that is a result of the resnet34:
 
 ![image info](imgs/predicted_to_real_price.png)
