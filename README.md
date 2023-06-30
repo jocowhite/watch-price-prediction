@@ -17,7 +17,11 @@ When considering the moral impact the project may have on society, no explicit p
 This project also shows that there is no direct obvious aspect that determines the price of a watch. This means, for example, how gold-plated the watch is, among other things. 
 Rather, it is certain models and brands that account for a certain price. 
 For society, the project does not bring much added value. For watch lovers, however, it can be interesting and perhaps artificial intelligence can help jewellers determine the price of a watch in the future. 
-This project started with the idea of detecting counterfeits, an ability that could actually protect jewellers from high financial losses. The problem that existed for this project, however, is the lack of a basis of watch pictures of fakes, as even fake watch online shops usually use the original pictures of the watches. 
+This project started with the idea of detecting counterfeits, an ability that could actually protect jewellers from high financial losses. The problem that existed for this project, however, is the lack of a basis of watch pictures of fakes, as even fake watch online shops usually use the original pictures of the watches.
+
+Also important to add is that the scraping of online shops is a questionable way to get on the Data for this project. 
+The pictures are only locally used and not distributed. 
+
 
 # Data
 To solve the problem, three data sets were compiled and downloaded.
@@ -101,9 +105,9 @@ A summary of the $r^2$ for the different Models and Datasets are listed in the f
 |                |            | trained on ds1 | trained on ds2     | trained on ds1 | trained on ds2 | trained on ds1 | trained on ds3 |
 | **ds1 kaggle** | test       | 0.32           | X                  | -0.17          | X              | 0.76           | X              |
 | **ds1 kaggle** | train      | 0.74           | X                  | -0.2           | X              | 0.90           | X              |
-| **ds2 marc**   | test       | -0.3           | i                  | -0.32          | i              | -0.31          | -6.4 (-0.07)*  |
-| **ds3 crown**  | test       | X              | i                  | X              | i              | X              | 0.52           |
-| **ds3 corwn**  | train      | X              | i                  | X              | i              | X              | 0.65           |
+| **ds2 marc**   | test       | -0.3           | i                  | -0.32          | -0.19          | -0.31          | -6.4 (-0.07)*  |
+| **ds3 crown**  | test       | X              | i                  | X              | 0.12           | X              | 0.52           |
+| **ds3 corwn**  | train      | X              | i                  | X              | 0.15           | X              | 0.65           |
 
 *filtered 7 huge outliers
 
@@ -139,3 +143,6 @@ It is the [MISSON ON EARTH](https://www.swatch.com/de-de/mission-on-earth-so33g1
 To find out how expensive the watch is considered to be, take a look at the following notebook: [test_M3_ds3.ipynb](test_M3_ds3.ipynb)
 
 ![image info](imgs/MG4243S.jpeg)
+
+
+# Future work
