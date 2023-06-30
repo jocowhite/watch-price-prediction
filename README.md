@@ -121,6 +121,9 @@ The ANN achieves the worst results. Different sizes were tried out. At the begin
 3. **Resnet34**
 The pre-trained Resnet34 achieves the best results, and it can indeed be observed that the model learns to distinguish between different watches and brands. What is particularly exciting, however, is that the model estimates three watches with values of well over 300k euros using new data from another online shop, in this case Marc Gebauer, which also has a very strong negative influence on the $r^2$ value. If you filter these outliers, you get an R value that is close to 0 for the prediction on a different data set such as that of the training. 
 
+To test more precisely what the resnet actually recognizes, in a second test manipulated images were fed into the model to see how the model works and to explain its behavior. 
+The tests are in the following file: [test2_M3_ds3.ipynb](test2_M3_ds3.ipynb)
+
 ### Overall learnings on this task
 Basically, it can be stated that the regression of watch prices based on pictures is a complex topic. There is no clear aspect, such as how golden the watch is, that indicates how expensive these watches are. While reasonably good results were obtained on a constant data set, none of the trained models could reproduce the r value on a different data set. 
 However, it should be noted that a mean value estimator on another model does not reach an R value of 0 on another data set, which is why this comparison should not be made when considering new data sets with which the model has not been trained.
@@ -145,5 +148,4 @@ With the help of this plot it is easy to see how far away the forecasts are from
 # Future work
 - As a next step it would be interesting to combine cheap and expensive watches in the training data of the model. 
     - This area was not examined in more detail because the data sets in the different price ranges have different sizes and the impact is therefore difficult to measure. 
-- In addition, it would of course be interesting to make the model more explainable. This would be possible, for example, by manipulating the image and removing the logo from certain watches and replacing it with a different logo. 
 - 
