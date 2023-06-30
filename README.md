@@ -19,8 +19,8 @@ Rather, it is certain models and brands that account for a certain price.
 For society, the project does not bring much added value. For watch lovers, however, it can be interesting and perhaps artificial intelligence can help jewellers determine the price of a watch in the future. 
 This project started with the idea of detecting counterfeits, an ability that could actually protect jewellers from high financial losses. The problem that existed for this project, however, is the lack of a basis of watch pictures of fakes, as even fake watch online shops usually use the original pictures of the watches.
 
-Also important to add is that the scraping of online shops is a questionable way to get on the Data for this project. 
-The pictures are only locally used and not distributed. 
+Also important to add is that the scraping of online shops is a questionable way to get on the data for this project. 
+The pictures are only locally used and not distributed. And only used for university purposes.
 
 
 # Data
@@ -60,7 +60,7 @@ path_imdb = 'data/watches/ds1_kaggle/images/'
 path_wiki = 'data/watches/ds1_kaggle/example_cleandata.csv'
 path_imdb = 'data/watches/ds1_kaggle/example_images/'
 ```
-You can also select different Datasets by changing the ds.... Part of the Path to the right folder name.
+You can also select different Datasets by changing the ds.... part of the path to the right folder name.
 
 ### **Packages**
 For the following project a [poetry](https://python-poetry.org/) environment was used and the [pyproject.toml](pyproject.toml) file helps to recreate the environment. So you have the Option to install poetry with: 
@@ -139,10 +139,11 @@ With the help of this plot it is easy to see how far away the forecasts are from
 ### Answer to the question from the beginning:
 **"Which watch looks very expensive although it is not."**
 
-It is the [MISSON ON EARTH](https://www.swatch.com/de-de/mission-on-earth-so33g100/SO33G100.html) from a Swatch X OMEGA Collaboration. 
-To find out how expensive the watch is considered to be, take a look at the following notebook: [test_M3_ds3.ipynb](test_M3_ds3.ipynb)
-
-![image info](imgs/MG4243S.jpeg)
+![image info](imgs/best_watch.png)
 
 
 # Future work
+- As a next step it would be interesting to combine cheap and expensive watches in the training data of the model. 
+    - This area was not examined in more detail because the data sets in the different price ranges have different sizes and the impact is therefore difficult to measure. 
+- In addition, it would of course be interesting to make the model more explainable. This would be possible, for example, by manipulating the image and removing the logo from certain watches and replacing it with a different logo. 
+- 
