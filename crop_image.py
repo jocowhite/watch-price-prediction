@@ -3,9 +3,7 @@
 from PIL import Image
 
 def resize(image_pil, width, height):
-    '''
-    Resize PIL image keeping ratio and using white background.
-    '''
+
     ratio_w = width / image_pil.width
     ratio_h = height / image_pil.height
     if ratio_w < ratio_h:
