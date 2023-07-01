@@ -105,7 +105,7 @@ A summary of the $R^2$ for the different Models and Datasets are listed in the f
 |                |            | trained on ds1 | trained on ds2     | trained on ds1 | trained on ds2 | trained on ds1 | trained on ds3 |
 | **ds1 kaggle** | test       | 0.32           | X                  | -0.17          | X              | 0.76           | X              |
 | **ds1 kaggle** | train      | 0.74           | X                  | -0.2           | X              | 0.90           | X              |
-| **ds2 marc**   | test       | -0.3           | i                  | -0.32          | -0.19          | -0.31          | -0.051         |
+| **ds2 marc**   | test       | -0.32          | i                  | -0.32          | -0.19          | -0.31          | -0.051         |
 | **ds3 crown**  | test       | X              | i                  | X              | 0.12           | X              | 0.52           |
 | **ds3 corwn**  | train      | X              | i                  | X              | 0.15           | X              | 0.65           |
 
