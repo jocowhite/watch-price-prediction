@@ -1,4 +1,4 @@
-#Quelle stackoverflow: https://stackoverflow.com/questions/44370469/python-image-resizing-keep-proportion-add-white-background
+### Source stackoverflow: https://stackoverflow.com/questions/44370469/python-image-resizing-keep-proportion-add-white-background (08.06.23)
 
 from PIL import Image
 

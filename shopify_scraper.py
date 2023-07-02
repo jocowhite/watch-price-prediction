@@ -1,4 +1,4 @@
-### Quelle: https://github.com/lagenar/shopify-scraper
+### Source: https://github.com/lagenar/shopify-scraper (07.06.2023)
 
 import sys
 import csv

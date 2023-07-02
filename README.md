@@ -1,4 +1,5 @@
 # watch-price-prediction
+-> Full Project is also available on the [DHBW GitLab](https://git.dhbw-stuttgart.de/wi20103/ml-project) and on [GitHub](https://github.com/jocowhite/watch-price-prediction)
 
 ## Introduction
 Expensive watches that you can't afford as a student are not a great hobby. 
@@ -12,6 +13,9 @@ The concrete goal is:
 **Predicting the price of a watch from a picture of the watch.**
 
 
+## Recent work
+No work could be found that answers this question. Only for the question of estimating an age based on pictures of people, there are some machine learning projects. There is also a project on Kaggle that predicts the price of an apartment based on pictures. At the time of writing, there are no current code examples for the Kaggle dataset used in this work. In general, the wristwatch image dataset provided on Kaggle is the only freely available dataset found during the research on this topic.  
+
 ## Moral reflections on the project
 When considering the moral impact the project may have on society, no explicit problems were identified.
 This project also shows that there is no direct obvious aspect that determines the price of a watch. This means, for example, how gold-plated the watch is, among other things. 
@@ -21,7 +25,6 @@ This project started with the idea of detecting counterfeits, an ability that co
 
 Also important to add is that the scraping of online shops is a questionable way to get on the data for this project. 
 The pictures are only locally used and not distributed. And only used for university purposes.
-
 
 # Data
 To solve the problem, three data sets were compiled and downloaded.
@@ -75,7 +78,7 @@ Otherwise you can Install the required dependency's manually that you can see in
 
 
 ### **Get trained Models**
-**The Models that are already trained and all the Data can also be downloaded by GIT-LFS through the GitLab Repository that you can find here: [Repo](https://git.dhbw-stuttgart.de/wi20103/ml-project)**
+**The Models that are already trained can be downloaded by GIT-LFS through the GitLab Repository that you can find here: [Repo](https://git.dhbw-stuttgart.de/wi20103/ml-project)**
 
 Install git-lfs on a Mac with brew:
 ```bash
@@ -90,6 +93,23 @@ git lfs pull
 ```
 After that you should have all files you need to run all Jupyter Notebooks.
 
+# Overview to all Files
+
+### Main Files
+1. **[1_Data_Preperation.ipynb](1_Data_Preperation.ipynb)** - Data Scraping, Data Loading, Data Cleaning and first Data Inspection
+2. **[M1_RandomForest.ipynb](M1_RandomForest.ipynb)** - First Model: Random Forest trained on DS1 and evaluated on DS2
+3. **[M1_RandomForest_ds3.ipynb](M1_RandomForest_ds3.ipynb)** - First Model: Random Forest trained on DS3 and evaluated on DS2
+4. **[M2_simpleNN.ipynb](M2_simpleNN.ipynb)** - Second Model - Own constructed ANN trained on DS1 and evaluated on DS2
+5. **[M2_simpleNN_ds3.ipynb](M2_simpleNN_ds3.ipynb)** - Second Model - Own constructed ANN trained on DS3 and evaluated on DS2
+6. **[M3_resnet.ipynb](M3_resnet.ipynb)** - Third Model: Pretrained Resnet34 trained on DS1 and evaluated on DS2
+7. **[M3_resnet_ds3.ipynb](M3_resnet_ds3.ipynb)** - Third Model: Pretrained Resnet34 training on DS3
+8. **[test_M3_ds3.ipynb](test_M3_ds3.ipynb)** - Evaluation of Resnet34 Model on DS3 and DS2 trained on DS3
+9. **[test2_M3_ds3.ipynb](test2_M3_ds3.ipynb)** - Explainability Tests on the Resnet34 Model - Try different manipulated Images
+10. **[WatchBrandPrediction.ipynb](WatchBrandPrediction.ipynb)** - Trained a model that predicts the watch brand instead of a price, but this model isn't evaluated. 
+### Helper Files
+10. **[shopify_scraper.py](shopify_scraper.py)** - Modified Shopify Scraper from GitHub
+11. **[crop_image.py](crop_image.py)** - Helper function to crop Images before loading into Models
+
 
 # Metrics
 In order to compare the models with each other, the metric of the $R^2$ was used also named [Coefficient of determination](https://en.wikipedia.org/wiki/Coefficient_of_determination). 
@@ -97,7 +117,7 @@ If we get a value less than zero, the model is worse than a mean value estimator
 As soon as we have values above 0, our model is better than a mean value estimator. To get really good results, this metric should at best be between 0.8 and 1, whereas a 1 would be very questionable, as it could represent an overfitting or a general error. 
 In this project, however, the best results are an $R^2$ value of 0.73 on the test data with a Resnet32 that has been pre-trained on this question. Unfortunately, no significantly better models such as a mean estimator can be trained with the other models. 
 
-## Results
+# Results
 
 A summary of the $R^2$ for the different Models and Datasets are listed in the following table: 
 | **Dataset**    | **Models** | **Model 1 -**  | **Random Forrest** | **Model 2 -**  | **ANN**        | **Model 3 -**  | **resnet34**   |
@@ -110,14 +130,14 @@ A summary of the $R^2$ for the different Models and Datasets are listed in the f
 | **ds3 corwn**  | train      | X              | 0.23               | X              | 0.15           | X              | 0.65           |
 
 
-### Evaluation
-1. **Random Forest:**
+## Evaluation
+### **Random Forest:**
 Random Forrest adapts very well to the training data. However, it unfortunately tends to overfitting. This may be due to the fact that with the random forest only each pixel is compared with the pixel that is exactly at this position on another image. To counteract this problem, a Sobel filter was applied for the detection of edges, which improved the results of the model. 
 
-2. **Artificial Neural Network:** 
+### **Artificial Neural Network:** 
 The ANN achieves the worst results. Different sizes were tried out. At the beginning with three layers, the model only permanently predicted a value that was not even the mean value. With enough training iterations, one would probably have reached the mean value at some point. The assumption is that a neural network is simply too small to recognise the complex relationships between the different clocks. Towards the end of the project, minimal positive R values were achieved. However, these are not indicative of a reliable model, as they are far too low and inconsistent. 
 
-3. **Resnet34**
+### **Resnet34**
 The pre-trained Resnet34 achieves the best results, and it can indeed be observed that the model learns to distinguish between different watches and brands. What is particularly exciting, however, is that the model estimates three watches with values of well over 300k euros using new data from another online shop, in this case Marc Gebauer, which also has a very strong negative influence on the $R^2$ value. If you filter these outliers, you get an R value that is close to 0 for the prediction on a different data set such as that of the training. 
 
 To test more precisely what the resnet actually recognizes, in a second test manipulated images were fed into the model to see how the model works and to explain its behavior. 
@@ -147,4 +167,6 @@ With the help of this plot it is easy to see how far away the forecasts are from
 # Future work
 - As a next step it would be interesting to combine cheap and expensive watches in the training data of the model. 
     - This area was not examined in more detail because the data sets in the different price ranges have different sizes and the impact is therefore difficult to measure. 
-- 
+- Also it would be interesting to extend the Experiments for the explainibility of the model from File [test2_M3_ds3.ipynb](test2_M3_ds3.ipynb) 
+- In the beginnig of the project a Model for classification of watch brands was tried ([WatchBrandPrediction.ipynb](WatchBrandPrediction.ipynb)) and it worked very good with DS3 and the pretrained resnet34, so there is this idea to predict the brand of the watch first and get the price with a second model. This could work better because the training of this watch brand classification model.  
+- As always it would be a great modification to the model to add more data, more GPU power or more training time and a better hyperparameter tuning. But all this things where limited by the time and the requirements of this project. 
